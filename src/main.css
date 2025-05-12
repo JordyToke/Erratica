@@ -12,6 +12,7 @@
   height: 100%;
   --internal-link-color: black;
   scroll-behavior: smooth;
+  scrollbar-color: black white;
 }
 
 /* START:Google materials icons font styling */

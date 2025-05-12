@@ -29,7 +29,8 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <NavLink to="/" className={({isActive}) => isActive ? styles.active : styles.navLink}>
-        <img src="assets/ERRATICA-01.svg" alt="ERRATICA logo" style={{width: "200px", color: "red"}} />
+      {/* <svg viewBox="1 40 98 55" height="80"><use href="/assets/ERRATICA-01.svg" /></svg> */}
+        <img src="assets/ERRATICA-01.svg#logo" alt="ERRATICA logo" style={{width: "200px", height: "50px"}} />
       </NavLink>
       <NavBar />
     </header>

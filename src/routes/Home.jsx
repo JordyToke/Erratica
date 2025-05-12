@@ -1,14 +1,14 @@
 import React from "react";
-import styles from "./style.module.css";
-import heroImgUrl from '/assets/IMG-7983.jpg';
+// import styles from "./style.module.css";
+import Slideshow from '../components/Slideshow';
 
 const Home = () => (
   <section className="home">
-    <div className={styles.slideshow}>
-      <img className={`${styles.heroImage}`} src={heroImgUrl} alt="" />
-    <p>
-      The above will be a Gallery slideshow.
-    </p>
+    <div>
+      <Slideshow />
+      <p>
+        The above will be a Gallery slideshow.
+      </p>
     </div>
   </section>
 );
