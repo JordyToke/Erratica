@@ -4,7 +4,7 @@ import Router from "./Router.jsx";
 import "./main.css";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+  // <StrictMode>
     <Router />
-  </StrictMode>
+  // </StrictMode>
 );

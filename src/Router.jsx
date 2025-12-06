@@ -5,7 +5,7 @@ import { Home, Work, Contact, Biography, Studio, NotFound } from "./routes";
 
 const Router = () => (
   <BrowserRouter 
-  // basename="/Erratica"
+  basename="/Erratica"
   >
     <Routes>
       <Route path="/" element={<App />}>

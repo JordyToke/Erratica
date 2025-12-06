@@ -1,0 +1,118 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.border {
+  /* variables */
+  --border-radius: 3rem;
+  --spread-radius: 0rem;
+  --blur-radius: 5rem;
+
+  /* Mask Composite */
+  -webkit-mask-composite: add;
+  mask-composite: add;
+
+  --mask-out: transparent;
+  --mask-in: white;
+  /* Mask Mode - change depending on whether mask uses transparent or luminance (traditional black/white)  */
+  mask-mode: alpha;
+
+  inset: 0;
+  border-radius: var(--border-radius);
+
+  /* Calculate Gradient Portions */
+  --r: max(var(--blur-radius), calc(var(--border-radius) - var(--spread-radius)));
+
+  --corner-size: calc(var(--r) + var(--spread-radius)) calc(var(--r) + var(--spread-radius));
+
+  --corner-gradient: var(--mask-in) 0px,
+    var(--mask-in) calc(var(--r) - var(--blur-radius)), var(--mask-out) var(--r);
+
+  --fill-gradient: var(--mask-out), var(--mask-out) var(--spread-radius),
+    var(--mask-in) calc(var(--spread-radius) + var(--blur-radius)),
+    var(--mask-in) calc(100% - var(--blur-radius) - var(--spread-radius)),
+    var(--mask-out) calc(100% - var(--spread-radius));
+
+  --fill-narrow-size: calc(100% - (var(--spread-radius) + var(--r)) * 2);
+
+  --fill-farther-position: calc(var(--spread-radius) + var(--r));
+
+  /* Mask Image */
+  --mask: linear-gradient(to right, var(--fill-gradient)),
+    linear-gradient(to bottom, var(--fill-gradient)),
+    radial-gradient(at bottom right, var(--corner-gradient)),
+    radial-gradient(at bottom left, var(--corner-gradient)),
+    radial-gradient(at top left, var(--corner-gradient)),
+    radial-gradient(at top right, var(--corner-gradient));
+
+  /* Mask Size */
+  -webkit-mask-size: 100% var(--fill-narrow-size), var(--fill-narrow-size) 100%,
+    var(--corner-size), var(--corner-size), var(--corner-size),
+    var(--corner-size);
+  mask-size: 100% var(--fill-narrow-size), var(--fill-narrow-size) 100%,
+    var(--corner-size), var(--corner-size), var(--corner-size),
+    var(--corner-size);
+
+  /* Mask Position */
+  -webkit-mask-position: 0 var(--fill-farther-position), var(--fill-farther-position) 0,
+    0 0, 100% 0, 100% 100%, 0 100%;
+  mask-position: 0 var(--fill-farther-position), var(--fill-farther-position) 0,
+    0 0, 100% 0, 100% 100%, 0 100%;
+
+  /* Mask Repeat */
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.borderVignette {
+  composes: border;
+
+  --blur-radius: 3rem;
+
+  /* Redefine Mask Composite */
+  -webkit-mask-composite: add;
+  mask-composite: add;
+  /* background-image: url(attr(src raw-string, "./")); */
+}
+
+.borderBlur {
+  composes: border;
+  
+  -webkit-mask-image: var(--mask);
+  mask-image: var(--mask);
+}
+
+.slideImage {
+  composes: borderBlur;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  object-fit: cover;
+}
+
+.slide {
+  height: 100%;
+  position: relative;
+  animation: fadeIn 0.3s ease-in 0 iteration-count direction fill-mode;
+}
+
+.slideContainer {
+  height: 75vh;
+}
+
+.arrow {
+  display: block;
+  position: absolute;
+  font-size: 1.5rem;
+  top: 45%;
+  padding: 5%;
+  text-align: center;
+  cursor: pointer;
+}

@@ -6,9 +6,6 @@ const Home = () => (
   <section className="home">
     <div>
       <Slideshow />
-      <p>
-        The above will be a Gallery slideshow.
-      </p>
     </div>
   </section>
 );
